@@ -52,6 +52,7 @@ signature = base64.b64encode(bytes.fromhex("32") + hmac.new(bytes.fromhex("fbf98
 headers["NDC-MSG-SIG"]=signature
 res = requests.post(f"https://service.narvii.com/api/v1/g/s/auth/login", data=data, headers=headers).json()
 headers.pop("NDC-MSG-SIG")
+sid={res['sid']}
 headers["NDCAUTH"]=f"sid={res['sid']}"
 uid=res["auid"]
 code = input("Введите ссылку на соо: ")
